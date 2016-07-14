@@ -51,7 +51,14 @@ class sale_price_schema(models.Model):
                 self.env['sale.price.schema.line'].create(vals)
         
         return True
-        
+    
+    @api.multi
+    def trans_close(self):
+        vals = {}
+        vals.update({'state': 'done'})
+        self.write(vals)
+        return True
+            
     name = fields.Char("Name", size=50, readonly=True)
     start_date = fields.Date("Start Date", required=True, index=True)
     end_date = fields.Date("End Date", required=True, index=True)
