@@ -8,6 +8,7 @@ AVAILABLE_STATES = [
     ('draft','New'),
     ('open','Open'),
     ('done','Close'),
+    ('delete','Deleted'),
 ]
 
 class sale_price_schema(models.Model):
