@@ -103,7 +103,7 @@
             <field name="name">Price Schema</field>
             <field name="res_model">sale.price.schema</field>
             <field name="view_mode">tree,form</field>
-            <field name="context">{'search_default_status_new':1,'search_default_status_open:1}</field>                    
+            <field name="context">{'search_default_status_new':1,'search_default_status_open':1}</field>                    
         </record>		
 
 	</data>
