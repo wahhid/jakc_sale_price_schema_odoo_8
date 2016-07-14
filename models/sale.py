@@ -176,7 +176,7 @@ class sale_order_line(osv.Model):
                     raise osv.except_osv(_('No Price Schema Defined!'), _('Before choosing a product,\n make sure customer tags defined for the customer.'))
                 
                 
-                args = [('sale_price_schema_id','=', sale_price_schema_ids[0]),('product_category_id','=',product_category_id),('partner_category_id','=',partner_category_id)]
+                args = [('sale_price_schema_id','=', sale_price_schema_ids[0]),('product_category_id','=',product_category_id),('partner_category_id','=',partner_category_id),('state','=','open')]
                 sale_price_schema_line_ids  = sale_price_schema_line_obj.search(cr, uid, args, context=context)
                 if not sale_price_schema_line_ids:
                     raise osv.except_osv(_('No Price Schema Defined!'), _('Before choosing a product,\n make sure price schema already defined'))

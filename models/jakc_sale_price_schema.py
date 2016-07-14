@@ -5,6 +5,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 AVAILABLE_STATES = [
+    ('draft','New'),
     ('open','Open'),
     ('done','Close'),
 ]
@@ -27,15 +28,20 @@ class sale_price_schema(models.Model):
         product_category_obj = self.env['product.category']
         partner_category_obj = self.env['res.partner.category']
         
+        generated = self.iface_generated
+        
+        if not generated:
+            vals = {}
+            vals.update({'iface_generated':True})
+            self.write(vals)
+        
+       
+             
         product_categories = product_category_obj.search_read([],[])
         partner_categories = partner_category_obj.search_read([],[])
-        
-        print product_categories
-        print partner_categories
-        
+         
         for product_category in product_categories:
             for partner_category in partner_categories:
-                print partner_category
                 vals = {}   
                 vals.update({'sale_price_schema_id': self.id})
                 vals.update({'product_category_id': product_category.get('id')})
@@ -50,6 +56,7 @@ class sale_price_schema(models.Model):
     end_date = fields.Date("End Date", required=True, index=True)
     merk_id = fields.Many2one("product.merk","Merk", required=True)
     tax_id = fields.Many2one("account.tax","Tax", required=True)
+    iface_generated = fields.Boolean("Generated", default=False)
     sale_price_schema_line_ids = fields.One2many("sale.price.schema.line","sale_price_schema_id", "Price Schemas")
     state = fields.Selection(AVAILABLE_STATES,'Status',size=16, default='open', readonly=True)
     
@@ -71,6 +78,7 @@ class sale_price_schema_line(models.Model):
     partner_category_id = fields.Many2one("res.partner.category", "Partner Category", required=True)
     price_after_tax = fields.Float("Price", required=True, default=0.0)
     price_allow_return = fields.Float("Price Allow Return", required=True, default=0.0)
+    state = fields.Selection(AVAILABLE_STATES, 'Status', default='draft', required=True)
     
     
     

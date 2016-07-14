@@ -25,11 +25,12 @@
 	                    <notebook>
 	                    	<page string="Details">
 	                    		<field name="sale_price_schema_line_ids">
-	                    			<tree>
+	                    			<tree colors="green:state=='open';red:state=='done';blue:state=='draft';">
 	                    				<field name="product_category_id"/>
 	                    				<field name="partner_category_id"/>
 	                    				<field name="price_after_tax"/>
 	                    				<field name="price_allow_return"/>
+	                    				<field name="state"/>
 	                    			</tree>
 	                    		</field>
 	                    	</page>
@@ -67,7 +68,8 @@
 	                        <field name="product_category_id"/>
 	                        <field name="partner_category_id"/>
 	                        <field name="price_after_tax"/> 
-	                        <field name="price_allow_return"/>                    
+	                        <field name="price_allow_return"/>       
+	                        <field name="state"/>             
 	                    </group>	                		                	
                 	</sheet>  
                 </form>
