@@ -56,7 +56,6 @@
             </field>
         </record>
         
-        
      	<record model="ir.ui.view" id="view_sale_price_schema_filter">
             <field name="name">Transaction Search</field>
             <field name="model">sale.price.schema</field>
